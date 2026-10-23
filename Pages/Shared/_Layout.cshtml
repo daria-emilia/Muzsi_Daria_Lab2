@@ -29,10 +29,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Authors/Index">Authors</a>
                         </li>
+                        <!-- Adăugat pentru Categorii conform cerinței -->
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/CategoryPages/Index">Category</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
                         </li>
-                       
+
                     </ul>
                 </div>
             </div>
@@ -54,6 +58,5 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
-    @await RenderSectionAsync("Scripts", required: false)
-</body>
+    @await RenderSectionAsync("Scripts", required: false)</body>
 </html>

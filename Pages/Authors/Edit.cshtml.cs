@@ -4,68 +4,69 @@ using Microsoft.EntityFrameworkCore;
 using Muzsi_Daria_Lab2.Models;
 using Muzsi_Daria_Lab2.Data;
 
-namespace Muzsi_Daria_Lab2.Pages.Authors;
-
-public class EditModel : PageModel
+namespace Muzsi_Daria_Lab2.Pages.Authors
 {
-    private readonly Muzsi_Daria_Lab2Context _context;
-
-    public EditModel(Muzsi_Daria_Lab2Context context)
+    public class EditModel : PageModel
     {
-        _context = context;
-    }
+        private readonly Muzsi_Daria_Lab2Context _context;
 
-    [BindProperty]
-    public Author Author { get; set; } = default!;
-
-    public async Task<IActionResult> OnGetAsync(int? id)
-    {
-        if (id is null)
+        public EditModel(Muzsi_Daria_Lab2Context context)
         {
-            return NotFound();
+            _context = context;
         }
 
-        var author = await _context.Author.FirstOrDefaultAsync(m => m.ID == id);
-        if (author is null)
-        {
-            return NotFound();
-        }
-        Author = author;
-        return Page();
-    }
+        [BindProperty]
+        public Author Author { get; set; } = default!;
 
-    // To protect from overposting attacks, enable the specific properties you want to bind to.
-    // For more details, see https://aka.ms/RazorPagesCRUD.
-    public async Task<IActionResult> OnPostAsync()
-    {
-        if (!ModelState.IsValid)
+        public async Task<IActionResult> OnGetAsync(int? id)
         {
-            return Page();
-        }
-
-        _context.Attach(Author).State = EntityState.Modified;
-
-        try
-        {
-            await _context.SaveChangesAsync();
-        }
-        catch (DbUpdateConcurrencyException)
-        {
-            if (!AuthorExists(Author.ID))
+            if (id is null)
             {
                 return NotFound();
             }
-            else
+
+            var author = await _context.Author.FirstOrDefaultAsync(m => m.ID == id);
+            if (author is null)
             {
-                throw;
+                return NotFound();
             }
+            Author = author;
+            return Page();
         }
 
-        return RedirectToPage("./Index");
-    }
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see https://aka.ms/RazorPagesCRUD.
+        public async Task<IActionResult> OnPostAsync()
+        {
+            if (!ModelState.IsValid)
+            {
+                return Page();
+            }
 
-    private bool AuthorExists(int id)
-    {
-        return _context.Author.Any(e => e.ID == id);
+            _context.Attach(Author).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!AuthorExists(Author.ID))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return RedirectToPage("./Index");
+        }
+
+        private bool AuthorExists(int id)
+        {
+            return _context.Author.Any(e => e.ID == id);
+        }
     }
 }

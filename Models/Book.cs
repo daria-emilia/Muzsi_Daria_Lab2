@@ -17,9 +17,13 @@ namespace Muzsi_Daria_Lab2.Models
         public DateTime PublishingDate { get; set; }
 
         public int? PublisherID { get; set; }
-        public Publisher? Publisher { get; set; } // proprietate de navigare
+        public Publisher? Publisher { get; set; } 
 
         public int? AuthorID { get; set; }
-        public Author? Author { get; set; } // proprietate de navigare către modelul Author
+        public Author? Author { get; set; } 
+
+        public ICollection<BookCategory>? BookCategories { get; set; }
     }
+
+
 }

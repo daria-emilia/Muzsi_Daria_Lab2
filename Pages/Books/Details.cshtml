@@ -11,29 +11,52 @@
     <h4>Book</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Book.Title)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Book.Title)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Book.Author)
+
+        <dt class="col-sm-2">
+            Author
         </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Book.Author)
+        <dd class="col-sm-10">
+            @(Model.Book.Author != null ? Model.Book.Author.LastName + " " + Model.Book.Author.FirstName : "")
         </dd>
-        <dt class = "col-sm-2">
+
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Book.Price)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Book.Price)
         </dd>
+
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Book.PublishingDate)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Book.PublishingDate)
+        </dd>
+
+        <dt class="col-sm-2">
+            Publisher
+        </dt>
+        <dd class="col-sm-10">
+            @(Model.Book.Publisher != null ? Model.Book.Publisher.PublisherName : "")
+        </dd>
+
+        <dt class="col-sm-2">
+            Categories
+        </dt>
+        <dd class="col-sm-10">
+            @if (Model.Book.BookCategories != null)
+            {
+                foreach (var category in Model.Book.BookCategories)
+                {
+                    @category.Category.CategoryName <br />
+                }
+            }
         </dd>
     </dl>
 </div>
