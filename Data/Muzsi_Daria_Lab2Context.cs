@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Muzsi_Daria_Lab2.Models;
 
 namespace Muzsi_Daria_Lab2.Data
 {
@@ -9,8 +10,10 @@ namespace Muzsi_Daria_Lab2.Data
         {
         }
 
-        public DbSet<Muzsi_Daria_Lab2.Models.Book> Book { get; set; } = default!;
-        public DbSet<Muzsi_Daria_Lab2.Models.Publisher> Publisher { get; set; } = default!;
-        public DbSet<Muzsi_Daria_Lab2.Models.Author> Author { get; set; } = default!;
+        public DbSet<Book> Book { get; set; } = default!;
+        public DbSet<Publisher> Publisher { get; set; } = default!;
+        public DbSet<Author> Author { get; set; } = default!;
+        public DbSet<Category> Category { get; set; } = default!;
+        public DbSet<BookCategory> BookCategory { get; set; } = default!;
     }
 }

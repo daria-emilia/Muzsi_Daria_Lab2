@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Muzsi_Daria_Lab2.Models
 {
@@ -11,6 +12,16 @@ namespace Muzsi_Daria_Lab2.Models
 
         [Display(Name = "Last Name")]
         public string? LastName { get; set; }
+
+        // Adăugăm proprietatea FullName cerută la laborator
+        [Display(Name = "Full Name")]
+        public string FullName
+        {
+            get
+            {
+                return FirstName + " " + LastName;
+            }
+        }
 
         public ICollection<Book>? Books { get; set; }
     }

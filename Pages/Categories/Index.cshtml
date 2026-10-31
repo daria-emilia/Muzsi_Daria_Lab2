@@ -1,0 +1,73 @@
+@page "{id:int?}"
+@model Muzsi_Daria_Lab2.Pages.Categories.IndexModel
+
+@{
+    ViewData["Title"] = "Categories";
+}
+
+<h1>Categories</h1>
+
+<div class="row mb-4">
+    <div class="col-md-4">
+        <form method="post">
+            <div class="form-group mb-2">
+                <label asp-for="NewCategory.CategoryName" class="control-label">Add New Category</label>
+                <input asp-for="NewCategory.CategoryName" class="form-control" placeholder="e.g. Fantasy, Mystery..." />
+            </div>
+            <button type="submit" class="btn btn-primary">Add Category</button>
+        </form>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Tabelul cu Categorii -->
+    <div class="col-md-5">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Category Name</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Category)
+                {
+                    string selectedRow = "";
+                    if (item.ID == Model.CategoryID)
+                    {
+                        selectedRow = "table-success";
+                    }
+                    <tr class="@selectedRow">
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CategoryName)
+                        </td>
+                        <td>
+                            <a asp-page="./Index" asp-route-id="@item.ID">Select</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Tabelul cu Cărțile din Categoria Selectată -->
+    @if (Model.CategoryID != 0)
+    {
+        <div class="col-md-7">
+            <h3>Books in Selected Category</h3>
+            <table class="table">
+                <tr>
+                    <th>Book Title</th>
+                    <th>Author</th>
+                </tr>
+                @foreach (var item in Model.Category.Where(x => x.ID == Model.CategoryID).SelectMany(c => c.BookCategories))
+                {
+                    <tr>
+                        <td>@item.Book.Title</td>
+                        <td>@item.Book.Author?.FullName</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+</div>
