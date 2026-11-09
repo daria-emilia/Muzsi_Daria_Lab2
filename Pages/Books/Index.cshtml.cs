@@ -68,7 +68,7 @@ namespace Muzsi_Daria_Lab2.Pages.Books
 
             switch (sortOrder)
             {
-                case "title_desc":
+                case "title_desc": 
                     booksIQ = booksIQ.OrderByDescending(s => s.Title).AsQueryable();
                     break;
                 case "author_desc":

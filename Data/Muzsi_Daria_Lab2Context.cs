@@ -5,6 +5,8 @@ namespace Muzsi_Daria_Lab2.Data
 {
     public class Muzsi_Daria_Lab2Context : DbContext
     {
+        public DbSet<Muzsi_Daria_Lab2.Models.Borrowings> Borrowings { get; set; } = default!;
+        public DbSet<Muzsi_Daria_Lab2.Models.Members> Members { get; set; } = default!;
         public Muzsi_Daria_Lab2Context(DbContextOptions<Muzsi_Daria_Lab2Context> options)
             : base(options)
         {

@@ -24,5 +24,7 @@ namespace Muzsi_Daria_Lab2.Models
 
         // Proprietatea lipsă care genera erorile:
         public ICollection<BookCategory> BookCategories { get; set; } = new List<BookCategory>();
+        public ICollection<Borrowings>? Borrowingss { get; set; }
+        
     }
 }
